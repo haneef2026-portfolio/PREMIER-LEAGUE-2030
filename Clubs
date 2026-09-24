@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Premier League 2030 | Club Directory</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #070b16;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111936, #25105c);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #30385a;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #b9c0d9;
+      font-size: 1rem;
+    }
+
+    .season {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: #ffffff12;
+      border: 1px solid #ffffff20;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1250px;
+      margin: auto;
+      padding: 35px 20px 60px;
+    }
+
+    .section-title {
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 1.8rem;
+    }
+
+    .section-title p {
+      color: #9299b5;
+      margin-top: 6px;
+    }
+
+    .clubs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .club-card {
+      background: #111728;
+      border: 1px solid #252d46;
+      border-radius: 18px;
+      padding: 25px 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .club-card:hover {
+      transform: translateY(-6px);
+      border-color: #6f58ff;
+      box-shadow: 0 12px 35px #00000055;
+    }
+
+    .club-logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .club-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .club-code {
+      color: #8e97b8;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #252d46;
+      color: #777f9e;
+    }
+
+    @media (max-width: 500px) {
+      .clubs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .club-card {
+        padding: 18px 10px;
+      }
+
+      .club-logo {
+        width: 65px;
+        height: 65px;
+      }
+
+      .club-card h3 {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Premier League</h1>
+  <p>Official-style 2026/27 Club Directory</p>
+  <div class="season">2026 / 27 SEASON</div>
+</header>
+
+<main>
+
+  <div class="section-title">
+    <h2>All 20 Clubs</h2>
+    <p>Select a club to view its profile.</p>
+  </div>
+
+  <div class="clubs" id="clubs"></div>
+
+</main>
+
+<footer>
+  <p>Premier League 2030 • Personal football project</p>
+</footer>
+
+
+<script>
+
+const clubs = [
+
+  {
+    name: "Arsenal",
+    code: "ARS",
+    logo: "logos/arsenal.png"
+  },
+
+  {
+    name: "Aston Villa",
+    code: "AVL",
+    logo: "logos/aston-villa.png"
+  },
+
+  {
+    name: "AFC Bournemouth",
+    code: "BOU",
+    logo: "logos/bournemouth.png"
+  },
+
+  {
+    name: "Brentford",
+    code: "BRE",
+    logo: "logos/brentford.png"
+  },
+
+  {
+    name: "Brighton & Hove Albion",
+    code: "BRI",
+    logo: "logos/brighton.png"
+  },
+
+  {
+    name: "Chelsea",
+    code: "CHE",
+    logo: "logos/chelsea.png"
+  },
+
+  {
+    name: "Coventry City",
+    code: "COV",
+    logo: "logos/coventry.png"
+  },
+
+  {
+    name: "Crystal Palace",
+    code: "CRY",
+    logo: "logos/crystal-palace.png"
+  },
+
+  {
+    name: "Everton",
+    code: "EVE",
+    logo: "logos/everton.png"
+  },
+
+  {
+    name: "Fulham",
+    code: "FUL",
+    logo: "logos/fulham.png"
+  },
+
+  {
+    name: "Hull City",
+    code: "HUL",
+    logo: "logos/hull-city.png"
+  },
+
+  {
+    name: "Ipswich Town",
+    code: "IPS",
+    logo: "logos/ipswich.png"
+  },
+
+  {
+    name: "Leeds United",
+    code: "LEE",
+    logo: "logos/leeds.png"
+  },
+
+  {
+    name: "Liverpool",
+    code: "LIV",
+    logo: "logos/liverpool.png"
+  },
+
+  {
+    name: "Manchester City",
+    code: "MCI",
+    logo: "logos/manchester-city.png"
+  },
+
+  {
+    name: "Manchester United",
+    code: "MUN",
+    logo: "logos/manchester-united.png"
+  },
+
+  {
+    name: "Newcastle United",
+    code: "NEW",
+    logo: "logos/newcastle.png"
+  },
+
+  {
+    name: "Nottingham Forest",
+    code: "NFO",
+    logo: "logos/nottingham-forest.png"
+  },
+
+  {
+    name: "Sunderland",
+    code: "SUN",
+    logo: "logos/sunderland.png"
+  },
+
+  {
+    name: "Tottenham Hotspur",
+    code: "TOT",
+    logo: "logos/tottenham.png"
+  }
+
+];
+
+
+const container = document.getElementById("clubs");
+
+
+clubs.forEach(club => {
+
+  const card = document.createElement("div");
+
+  card.className = "club-card";
+
+  card.innerHTML = `
+    <img
+      class="club-logo"
+      src="${club.logo}"
+      alt="${club.name} logo"
+      onerror="this.src='logos/default.png'"
+    >
+
+    <h3>${club.name}</h3>
+
+    <div class="club-code">
+      ${club.code}
+    </div>
+  `;
+
+  card.onclick = () => {
+    window.location.href =
+      "clubs/" + club.code.toLowerCase() + ".html";
+  };
+
+  container.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>
